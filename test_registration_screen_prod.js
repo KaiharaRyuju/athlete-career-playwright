@@ -6,7 +6,7 @@ const { chromium } = require("playwright");
   const context = await browser.newContext({
     httpCredentials: {
       username: "athlete",
-      password: "uV4taCn9d",
+      password: "uV4taCn9",
     },
   });
 
