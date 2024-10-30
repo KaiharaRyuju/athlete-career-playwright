@@ -1,8 +1,13 @@
-const { testCases } = require("./testDataStg.js");
+const { testCases } = require("./testData.js");
 const { chromium } = require("playwright");
 
 (async () => {
-  const browser = await chromium.launch({ headless: false });
+  const edgePath =
+    "/Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge";
+  const browser = await chromium.launch({
+    headless: false,
+    executablePath: edgePath,
+  });
 
   const context = await browser.newContext({
     httpCredentials: {
