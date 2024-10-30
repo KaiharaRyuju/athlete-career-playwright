@@ -1,4 +1,4 @@
-const { testCases } = require("./testDataProd.js");
+const { testCases } = require("./testData.js");
 const { chromium } = require("playwright");
 
 (async () => {
@@ -23,58 +23,70 @@ const { chromium } = require("playwright");
     await page.selectOption('select[name="birth_month"]', testCase.birthMonth);
     await page.selectOption('select[name="birth_day"]', testCase.birthDay);
     await page.fill('input[name="zip"]', testCase.zip);
-    await page.selectOption(
-      'select[name="prefecture_id"]',
-      testCase.prefectureId
-    );
+    await page.selectOption('select[name="prefecture"]', testCase.prefectureId);
     await page.fill('input[name="address"]', testCase.address);
     await page.fill('input[name="portable_tel"]', testCase.phone);
     await page.fill('input[name="portable_email"]', testCase.email);
     await page.fill('input[name="portable_email_re"]', testCase.emailRe);
     await page.selectOption(
-      'select[name="educations-school_category_id-0"]',
+      'select[name="educations_school_category_id"]',
       testCase.schoolCategory
     );
-    await page.fill('input[name="educations-school-0"]', testCase.schoolName);
-    await page.fill('input[name="educations-course-0"]', testCase.courseName);
+    await page.fill('input[name="educations_school"]', testCase.schoolName);
+    await page.fill('input[name="educations_course"]', testCase.courseName);
     await page.selectOption(
-      'select[name="educations-entrance_date_y-0"]',
+      'select[name="educations_entrance_date_y"]',
       testCase.entranceYear
     );
     await page.selectOption(
-      'select[name="educations-entrance_date_m-0"]',
+      'select[name="educations_entrance_date_m"]',
       testCase.entranceMonth
     );
-    await page.fill(
-      'input[name="free_text_items_11"]',
-      testCase.freeTextItems11
-    );
-    await page.fill(
-      'textarea[name="free_textarea_items_15"]',
-      testCase.textareaItems15
-    );
-    await page.fill('input[name="hope_place"]', testCase.hopePlace);
-    await page.fill(
-      'textarea[name="free_text_items_10"]',
-      testCase.textareaItems10
-    );
-    await page.fill('textarea[name="qualification"]', testCase.qualification);
-    await page.fill(
-      'textarea[name="free_textarea_items_92"]',
-      testCase.textareaItems92
-    );
 
-    const errorMessage = await page.textContent(".error-message");
+    await page.fill('input[name="sport_name"]', testCase.freeTextItems11);
+    await page.fill('textarea[name="score"]', testCase.textareaItems15);
+    await page.fill('input[name="hope_place"]', testCase.hopePlace);
+    await page.fill('textarea[name="other"]', testCase.other);
+    await page.fill('textarea[name="qualification"]', testCase.qualification);
+    await page.fill('textarea[name="hobby"]', testCase.hobby);
+
+    await page.evaluate(() => {
+      const checkbox = document.querySelector("#agree");
+      if (checkbox) {
+        checkbox.checked = true;
+
+        const vueInstance = checkbox.__vue__;
+        if (vueInstance && vueInstance.$data) {
+          vueInstance.$data.formValue.agree = "1";
+        }
+
+        checkbox.dispatchEvent(new Event("change", { bubbles: true }));
+      }
+    });
+
+    await page.evaluate(() => {
+      const radioButtonValue = "0";
+      const radioButtons = document.querySelectorAll(
+        '#educations_status input[type="radio"]'
+      );
+
+      radioButtons.forEach((radio) => {
+        if (radio.value === radioButtonValue) {
+          radio.checked = true;
+          radio.dispatchEvent(new Event("change", { bubbles: true }));
+        }
+      });
+    });
 
     await page.click("#js-btn-confirm");
 
     const errorVisible = await page.isVisible(
-      `div.error-message.is-show[data-error="${testCase.errorName}"]`
+      `p.error-msg.icon-alert.error-message.is-error.is-show[data-error=${testCase.errorName}]`
     );
 
     if (errorVisible) {
       const errorMessage = await page.textContent(
-        `div.error-message.is-show[data-error=${testCase.errorName}] p.u-fz-xs-12rem.u-color-red-d`
+        "p.error-message.is-error.is-show"
       );
       console.log("エラーメッセージが表示されています: ", errorMessage);
 
@@ -96,8 +108,6 @@ const { chromium } = require("playwright");
         `エラーメッセージは表示されていません。テストケース：${testCase.name}`
       );
     }
-
-    console.log(`テスト完了: ${errorMessage}`);
   }
 
   await browser.close();

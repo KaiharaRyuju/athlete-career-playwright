@@ -1,4 +1,4 @@
-const { testCases } = require("./testDataStg.js");
+const { testCases } = require("./testData.js");
 const { chromium } = require("playwright");
 
 (async () => {
@@ -21,7 +21,7 @@ const { chromium } = require("playwright");
   for (const testCase of testCases) {
     console.log(`--------テスト開始: ${testCase.name}--------`);
 
-    await page.goto("https://stg-athlete-career.mynavi.jp/register/");
+    await page.goto("https://athlete-career.mynavi.jp/register/");
 
     await page.fill('input[name="name"]', testCase.nameInput);
     await page.selectOption('select[name="birth_year"]', testCase.birthYear);
@@ -51,7 +51,7 @@ const { chromium } = require("playwright");
     await page.fill('input[name="sport_name"]', testCase.freeTextItems11);
     await page.fill('textarea[name="score"]', testCase.textareaItems15);
     await page.fill('input[name="hope_place"]', testCase.hopePlace);
-    await page.fill('textarea[name="other"]', testCase.textareaItems10);
+    await page.fill('textarea[name="other"]', testCase.other);
     await page.fill('textarea[name="qualification"]', testCase.qualification);
     await page.fill('textarea[name="hobby"]', testCase.hobby);
 
