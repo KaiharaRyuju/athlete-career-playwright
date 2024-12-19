@@ -18,15 +18,23 @@ const { webkit } = require("playwright");
   for (const testCase of testCases) {
     console.log(`--------テスト開始: ${testCase.name}--------`);
 
-    await page.goto("https://athlete-career.mynavi.jp/register/");
+    // await page.goto("https://athlete-career.mynavi.jp/register/");
+    await page.goto("http://localhost:3000/register/")
 
-    await page.fill('input[name="name"]', testCase.nameInput);
+    await page.fill('input[name="last_name"]', testCase.lastNameInput);
+    await page.fill('input[name="first_name"]', testCase.firstNameInput);
+    await page.fill('input[name="last_name_kana"]', testCase.lastNameKanaInput);
+    await page.fill('input[name="first_name_kana"]', testCase.firstNameKanaInput);
+
     await page.selectOption('select[name="birth_year"]', testCase.birthYear);
     await page.selectOption('select[name="birth_month"]', testCase.birthMonth);
     await page.selectOption('select[name="birth_day"]', testCase.birthDay);
     await page.fill('input[name="zip"]', testCase.zip);
     await page.selectOption('select[name="prefecture"]', testCase.prefectureId);
+    await page.fill('input[name="city"]', testCase.city);
     await page.fill('input[name="address"]', testCase.address);
+    await page.fill('input[name="building"]', testCase.building);
+    
     await page.fill('input[name="portable_tel"]', testCase.phone);
     await page.fill('input[name="portable_email"]', testCase.email);
     await page.fill('input[name="portable_email_re"]', testCase.emailRe);
@@ -47,10 +55,12 @@ const { webkit } = require("playwright");
 
     await page.fill('input[name="sport_name"]', testCase.freeTextItems11);
     await page.fill('textarea[name="score"]', testCase.textareaItems15);
-    await page.fill('input[name="hope_place"]', testCase.hopePlace);
+    await page.selectOption('select[name="hope_place"]', testCase.hopePlace);
+    await page.fill('textarea[name="hope_place_memo"]', testCase.hopePlaceMemo);
     await page.fill('textarea[name="other"]', testCase.other);
     await page.fill('textarea[name="qualification"]', testCase.qualification);
     await page.fill('textarea[name="hobby"]', testCase.hobby);
+    await page.fill('textarea[name="skill"]', testCase.skill);
 
     await page.evaluate(() => {
       const checkbox = document.querySelector("#agree");

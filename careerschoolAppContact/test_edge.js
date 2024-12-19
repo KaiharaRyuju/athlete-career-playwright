@@ -21,10 +21,10 @@ const { chromium } = require("playwright");
   for (const testCase of testCases) {
     console.log(`--------テスト開始: ${testCase.name}--------`);
 
-    await page.goto("https://stg-athlete-career.mynavi.jp/contact_univas/", {
+    await page.goto("https://stg-athlete-career.mynavi.jp/careerschool-app-contact/", {
       timeout: 60000,
     });
-    
+
     await page.fill('input[name="last_name"]', testCase.lastNameInput);
     await page.fill('input[name="first_name"]', testCase.firstNameInput);
     await page.fill('input[name="last_name_kana"]', testCase.lastNameKanaInput);

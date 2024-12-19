@@ -20,8 +20,11 @@ const { chromium } = require("playwright");
       timeout: 60000,
     });
 
-    await page.fill('input[name="name"]', testCase.nameInput);
-    await page.fill('input[name="kana"]', testCase.kana);
+    await page.fill('input[name="last_name"]', testCase.lastNameInput);
+    await page.fill('input[name="first_name"]', testCase.firstNameInput);
+    await page.fill('input[name="last_name_kana"]', testCase.lastNameKanaInput);
+    await page.fill('input[name="first_name_kana"]', testCase.firstNameKanaInput);
+
     await page.selectOption('select[name="birth_year"]', testCase.birthYear);
     await page.selectOption('select[name="birth_month"]', testCase.birthMonth);
     await page.selectOption('select[name="birth_day"]', testCase.birthDay);
@@ -91,7 +94,7 @@ const { chromium } = require("playwright");
     await page.click("#js-btn-confirm");
 
     const errorVisible = await page.isVisible(
-      `p.error-msg.icon-alert.error-message.is-error.is-show[data-error=${testCase.errorName}]`
+      `p.error-msg.icon-alert.error-message.is-error.is-show[data-error="${testCase.errorName}"]`
     );
 
     if (errorVisible) {

@@ -2,12 +2,7 @@ const { testCases } = require("./testData.js");
 const { chromium } = require("playwright");
 
 (async () => {
-  const edgePath =
-    "/Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge";
-  const browser = await chromium.launch({
-    headless: false,
-    executablePath: edgePath,
-  });
+  const browser = await chromium.launch({ headless: false });
 
   const context = await browser.newContext({
     httpCredentials: {
@@ -21,15 +16,14 @@ const { chromium } = require("playwright");
   for (const testCase of testCases) {
     console.log(`--------テスト開始: ${testCase.name}--------`);
 
-    await page.goto("https://stg-athlete-career.mynavi.jp/contact_univas/", {
+    await page.goto("https://stg-athlete-career.mynavi.jp/careerschool-app-contact/", {
       timeout: 60000,
     });
-    
+
     await page.fill('input[name="last_name"]', testCase.lastNameInput);
     await page.fill('input[name="first_name"]', testCase.firstNameInput);
     await page.fill('input[name="last_name_kana"]', testCase.lastNameKanaInput);
     await page.fill('input[name="first_name_kana"]', testCase.firstNameKanaInput);
-
     await page.selectOption('select[name="birth_year"]', testCase.birthYear);
     await page.selectOption('select[name="birth_month"]', testCase.birthMonth);
     await page.selectOption('select[name="birth_day"]', testCase.birthDay);
