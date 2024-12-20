@@ -1,5 +1,9 @@
-パッケージをインストールした後にテストしたいファイルを実行
+パッケージをインストールした後にテストしたいファイルを実行する
 
+実行コマンド
 ```
-node register/test_chrome.js
+node register/validation_chrome.js
 ```
+
+
+
