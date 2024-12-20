@@ -138,7 +138,7 @@ const testCasesStep3 = [
         birthDay: "29",
         sex_id: "1",
         errorName: "last_name_kana",
-        expectedMessage: "苗字(カナ)はカタカナのみで入力してください",
+        expectedMessage: "苗字(カナ)は全角カナで入力してください",
     },
     {
         name: "名前(カナ)のカタカナエラーチェック",
@@ -151,7 +151,7 @@ const testCasesStep3 = [
         birthDay: "29",
         sex_id: "1",
         errorName: "first_name_kana",
-        expectedMessage: "苗字(カナ)はカタカナのみで入力してください",
+        expectedMessage: "名前(カナ)は全角カナで入力してください",
     },
     {
         name: "生年月日（日）のエラーチェック",
@@ -197,7 +197,7 @@ const testCasesStep4 = [
         email: "kaihara.ryuju.mz@mynavi.jp",
         emailRe: "kaihara.ryuju.mz@mynavi.jp",
         errorName: "portable_tel",
-        expectedMessage: "電話番号は11文字で入力してください",
+        expectedMessage: "電話番号は10文字以上・11文字以内で入力してください",
     },
     {
         name: "電話番号の11文字以上エラーチェック",
@@ -205,7 +205,7 @@ const testCasesStep4 = [
         email: "kaihara.ryuju.mz@mynavi.jp",
         emailRe: "kaihara.ryuju.mz@mynavi.jp",
         errorName: "portable_tel",
-        expectedMessage: "電話番号は11文字で入力してください",
+        expectedMessage: "電話番号は10文字以上・11文字以内で入力してください",
     },
     {
         name: "電話番号のハイフンエラーチェック",
@@ -261,8 +261,37 @@ const testCasesStep5 = [
     {
         name: "当サイトをどう知りましたか？の空白エラーチェック",
         inforMedia: "",
+        introducer: "",
         errorName: "infor_media",
         expectedMessage: "当サイトをどう知りましたか？を選択してください",
+    },
+    {
+        name: "友達からの紹介の入力の空白エラーチェック",
+        inforMedia: "19",
+        introducer: "",
+        errorName: "introducer",
+        expectedMessage: "ご紹介者の氏名・チーム名を入力してください",
+    },
+    {
+        name: "監督からの紹介の入力の空白エラーチェック",
+        inforMedia: "23",
+        introducer: "",
+        errorName: "introducer",
+        expectedMessage: "ご紹介者の氏名・チーム名を入力してください",
+    },
+    {
+        name: "ご紹介の氏名・チーム名の入力の空白エラーチェック",
+        inforMedia: "45",
+        introducer: "",
+        errorName: "introducer",
+        expectedMessage: "ご紹介者の氏名・チーム名を入力してください",
+    },
+    {
+        name: "ご紹介の氏名・チーム名の100文字以上エラーチェック",
+        inforMedia: "45",
+        introducer: "バレーボールバレーボールバレーボールバレーボールバレーボールバレーボールバレーボールバレーボールバレーバレーボールバレーボールバレーボールバレーボールバレーボールバレーボールバレーボールバレーボールバレ",
+        errorName: "introducer",
+        expectedMessage: "ご紹介者の氏名・チーム名は100文字以内で入力してください",
     },
 ]
 

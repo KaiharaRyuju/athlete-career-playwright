@@ -326,6 +326,10 @@ const { webkit } = require("playwright");
       testCase.inforMedia
     );
 
+    if (testCase.introducer.length > 0) {
+      await page.fill('input[name="introducer"]', testCase.introducer);
+    }
+
     let checkbox = ""
 
     await page.evaluate(() => {

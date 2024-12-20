@@ -193,7 +193,7 @@ const testCases = [
     graduation_year: "卒業済み",
     memo: "2019年マイナビ大会で優勝しました。",
     errorName: "last_name_kana",
-    expectedMessage: "苗字(カナ)はカタカナのみで入力してください",
+    expectedMessage: "苗字(カナ)は全角カナで入力してください",
   },
   {
     name: "名前（カナ）のカタカナエラーチェック",
@@ -214,7 +214,7 @@ const testCases = [
     graduation_year: "卒業済み",
     memo: "2019年マイナビ大会で優勝しました。",
     errorName: "first_name_kana",
-    expectedMessage: "名前(カナ)はカタカナのみで入力してください",
+    expectedMessage: "名前(カナ)は全角カナで入力してください",
   },
   {
     name: "生年月日(月)の空白エラーチェック",
@@ -320,7 +320,7 @@ const testCases = [
     memo: "2019年マイナビ大会で優勝しました。",
     errorName: "portable_tel",
     expectedMessage:
-      "電話番号は10文字以上・11文字以内の半角数字・ハイフンなしで入力してください",
+      "電話番号は10文字以上・11文字以内で入力してください",
   },
   {
     name: "電話番号の11文字以上エラーチェック",
@@ -342,7 +342,29 @@ const testCases = [
     memo: "2019年マイナビ大会で優勝しました。",
     errorName: "portable_tel",
     expectedMessage:
-      "電話番号は10文字以上・11文字以内の半角数字・ハイフンなしで入力してください",
+      "電話番号は10文字以上・11文字以内で入力してください",
+  },
+  {
+    name: "電話番号のハイフンエラーチェック",
+    lastNameInput: "テスト",
+    firstNameInput: "テスト",
+    lastNameKanaInput: "テスト",
+    firstNameKanaInput: "テスト",
+    birthYear: "1997",
+    birthMonth: "10",
+    birthDay: "29",
+    sex_id: "1",
+    address: "マイナビ区",
+    phone: "080-0112344",
+    email: "kaihara.ryuju.mz@mynavi.jp",
+    emailRe: "kaihara.ryuju.mz@mynavi.jp",
+    educations_school: "マイナビ大学",
+    sport_name: "バレーボール",
+    graduation_year: "卒業済み",
+    memo: "2019年マイナビ大会で優勝しました。",
+    errorName: "portable_tel",
+    expectedMessage:
+      "電話番号は半角数字・ハイフンなしで入力してください",
   },
   {
     name: "メールアドレスの空白エラーチェック",

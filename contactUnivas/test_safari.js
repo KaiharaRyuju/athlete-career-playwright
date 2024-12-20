@@ -18,7 +18,11 @@ const { webkit } = require("playwright");
   for (const testCase of testCases) {
     console.log(`--------テスト開始: ${testCase.name}--------`);
 
-    await page.goto("https://stg-athlete-career.mynavi.jp/contact_univas/", {
+    // await page.goto("https://stg-athlete-career.mynavi.jp/contact_univas/", {
+    //   timeout: 60000,
+    // });
+
+    await page.goto("http://localhost:3000/contact_univas/", {
       timeout: 60000,
     });
 

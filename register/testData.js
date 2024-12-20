@@ -294,7 +294,7 @@ const testCases = [
     hobby: "バレーは小学校からやってました。",
     skill: "バレー",
     errorName: "last_name_kana",
-    expectedMessage: "苗字(カナ)はカタカナのみで入力してください",
+    expectedMessage: "苗字(カナ)は全角カナで入力してください",
   },
   {
     name: "名前(カナ)のカタカナエラーチェック",
@@ -327,7 +327,7 @@ const testCases = [
     hobby: "バレーは小学校からやってました。",
     skill: "バレー",
     errorName: "first_name_kana",
-    expectedMessage: "名前(カナ)はカタカナのみで入力してください",
+    expectedMessage: "名前(カナ)は全角カナで入力してください",
   },
   {
     name: "生年月日(日)の空白エラーチェック",
