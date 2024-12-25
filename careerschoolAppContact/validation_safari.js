@@ -18,13 +18,13 @@ const { webkit } = require("playwright");
   for (const testCase of testCases) {
     console.log(`--------テスト開始: ${testCase.name}--------`);
 
-    // await page.goto("https://stg-athlete-career.mynavi.jp/careerschool-app-contact/", {
-    //   timeout: 60000,
-    // });
-
-    await page.goto("http://localhost:3000/careerschool-app-contact/", {
+    await page.goto("https://stg-athlete-career.mynavi.jp/careerschool-app-contact/", {
       timeout: 60000,
-    })
+    });
+
+    // await page.goto("http://localhost:3000/careerschool-app-contact/", {
+    //   timeout: 60000,
+    // })
 
     await page.fill('input[name="last_name"]', testCase.lastNameInput);
     await page.fill('input[name="first_name"]', testCase.firstNameInput);

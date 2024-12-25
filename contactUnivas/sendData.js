@@ -97,7 +97,7 @@ const { chromium } = require("playwright");
 
     await page.click("#js-btn-confirm");
 
-    await page.click("#js-btn-confirm");
+    // await page.click("#js-btn-confirm");
 
     console.log(`--------テスト登録終了--------`);
 

@@ -21,8 +21,8 @@ const { chromium } = require("playwright");
   for (const testCase of testCasesStep1) {
     console.log(`--------テスト開始: ${testCase.name}--------`);
 
-    // await page.goto("https://athlete-career.mynavi.jp/contact/");
-    await page.goto("http://localhost:3000/contact");
+    await page.goto("https://stg-athlete-career.mynavi.jp/contact/");
+    // await page.goto("http://localhost:3000/contact");
 
     await page.selectOption(
         'select[name="graduation_year"]',

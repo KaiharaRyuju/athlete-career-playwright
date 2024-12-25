@@ -19,7 +19,8 @@ const { webkit } = require("playwright");
     console.log(`--------テスト開始: ${testCase.name}--------`);
 
     // await page.goto("https://athlete-career.mynavi.jp/register/");
-    await page.goto("http://localhost:3000/register/")
+    await page.goto("https://stg-athlete-career.mynavi.jp/register/");
+    // await page.goto("http://localhost:3000/register/")
 
     await page.fill('input[name="last_name"]', testCase.lastNameInput);
     await page.fill('input[name="first_name"]', testCase.firstNameInput);
