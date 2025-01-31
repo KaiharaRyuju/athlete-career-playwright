@@ -13,7 +13,7 @@ const { chromium } = require("playwright");
   const page = await context.newPage();
 
   const testData = {
-    graduation_year: "卒業済み",
+    graduation_year: "2026年3月卒業予定（例：現大学3年生・短大1年生）",
     sport_name: "バレーボール",
     last_name: "test貝原",
     first_name: "龍樹",
@@ -26,8 +26,9 @@ const { chromium } = require("playwright");
 
   console.log(`--------テスト登録開始--------`);
 
+  await page.goto("https://athlete-career.mynavi.jp/contact/");
   // await page.goto("https://stg-athlete-career.mynavi.jp/contact/");
-  await page.goto("http://localhost:3000/contact");
+  // await page.goto("http://localhost:3000/contact");
 
   await page.selectOption(
     'select[name="graduation_year"]',
@@ -116,7 +117,7 @@ const { chromium } = require("playwright");
     }
   );
 
-  // await page.click("#js-btn-submit");
+  await page.click("#js-btn-submit");
 
   console.log(`--------テスト登録終了--------`);
 })();

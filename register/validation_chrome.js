@@ -16,13 +16,16 @@ const { chromium } = require("playwright");
   for (const testCase of testCases) {
     console.log(`--------テスト開始: ${testCase.name}--------`);
 
-    // await page.goto("https://athlete-career.mynavi.jp/register/");
-    await page.goto("https://stg-athlete-career.mynavi.jp/register/");
+    await page.goto("https://athlete-career.mynavi.jp/register/");
+    // await page.goto("https://stg-athlete-career.mynavi.jp/register/");
 
     await page.fill('input[name="last_name"]', testCase.lastNameInput);
     await page.fill('input[name="first_name"]', testCase.firstNameInput);
     await page.fill('input[name="last_name_kana"]', testCase.lastNameKanaInput);
-    await page.fill('input[name="first_name_kana"]', testCase.firstNameKanaInput);
+    await page.fill(
+      'input[name="first_name_kana"]',
+      testCase.firstNameKanaInput
+    );
 
     await page.selectOption('select[name="birth_year"]', testCase.birthYear);
     await page.selectOption('select[name="birth_month"]', testCase.birthMonth);
@@ -32,7 +35,7 @@ const { chromium } = require("playwright");
     await page.fill('input[name="city"]', testCase.city);
     await page.fill('input[name="address"]', testCase.address);
     await page.fill('input[name="building"]', testCase.building);
-    
+
     await page.fill('input[name="portable_tel"]', testCase.phone);
     await page.fill('input[name="portable_email"]', testCase.email);
     await page.fill('input[name="portable_email_re"]', testCase.emailRe);

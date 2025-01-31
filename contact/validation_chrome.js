@@ -1,4 +1,8 @@
-const { testCasesStep1, testCasesStep2, testCasesStep3 } = require("./testData");
+const {
+  testCasesStep1,
+  testCasesStep2,
+  testCasesStep3,
+} = require("./testData");
 const { chromium } = require("playwright");
 
 (async () => {
@@ -16,13 +20,13 @@ const { chromium } = require("playwright");
   for (const testCase of testCasesStep1) {
     console.log(`--------テスト開始: ${testCase.name}--------`);
 
-    // await page.goto("https://athlete-career.mynavi.jp/contact/");
-    await page.goto("https://stg-athlete-career.mynavi.jp/contact/");
+    await page.goto("https://athlete-career.mynavi.jp/contact/");
+    // await page.goto("https://stg-athlete-career.mynavi.jp/contact/");
     // await page.goto("http://localhost:3000/contact");
 
     await page.selectOption(
-        'select[name="graduation_year"]',
-        testCase.graduationYear
+      'select[name="graduation_year"]',
+      testCase.graduationYear
     );
 
     await page.click("#js-btn-next");
@@ -63,17 +67,13 @@ const { chromium } = require("playwright");
     // await page.goto("https://athlete-career.mynavi.jp/contact/");
     await page.goto("http://localhost:3000/contact");
 
-    await page.selectOption(
-        'select[name="graduation_year"]',
-        "卒業済み"
-    );
+    await page.selectOption('select[name="graduation_year"]', "卒業済み");
 
     await page.click("#js-btn-next");
 
     await page.fill('input[name="sport_name"]', testCase.sportName);
 
     await page.click("#js-btn-next");
-
 
     const errorVisible = await page.isVisible(
       `p.error-msg.icon-alert.error-message.is-error.is-show[data-error=${testCase.errorName}]`
@@ -111,10 +111,7 @@ const { chromium } = require("playwright");
     // await page.goto("https://athlete-career.mynavi.jp/contact/");
     await page.goto("http://localhost:3000/contact");
 
-    await page.selectOption(
-        'select[name="graduation_year"]',
-        "卒業済み"
-    );
+    await page.selectOption('select[name="graduation_year"]', "卒業済み");
 
     await page.click("#js-btn-next");
 
@@ -125,12 +122,14 @@ const { chromium } = require("playwright");
     await page.fill('input[name="last_name"]', testCase.lastNameInput);
     await page.fill('input[name="first_name"]', testCase.firstNameInput);
     await page.fill('input[name="last_name_kana"]', testCase.lastNameKanaInput);
-    await page.fill('input[name="first_name_kana"]', testCase.firstNameKanaInput);
+    await page.fill(
+      'input[name="first_name_kana"]',
+      testCase.firstNameKanaInput
+    );
 
     await page.selectOption('select[name="birth_year"]', testCase.birthYear);
     await page.selectOption('select[name="birth_month"]', testCase.birthMonth);
     await page.selectOption('select[name="birth_day"]', testCase.birthDay);
-
 
     const errorVisible = await page.isVisible(
       `p.error-msg.icon-alert.error-message.is-error.is-show[data-error=${testCase.errorName}]`

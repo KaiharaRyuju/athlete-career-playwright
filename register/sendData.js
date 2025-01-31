@@ -1,12 +1,12 @@
 const { chromium } = require("playwright");
-// const { webkit } = require("playwright");
+const { webkit } = require("playwright");
 
 (async () => {
-  // const browser = await webkit.launch({
-  //   headless: false,
-  // });
+  const browser = await webkit.launch({
+    headless: false,
+  });
 
-  const browser = await chromium.launch({ headless: false });
+  // const browser = await chromium.launch({ headless: false });
 
   const context = await browser.newContext({
     httpCredentials: {
@@ -20,7 +20,7 @@ const { chromium } = require("playwright");
   console.log(`--------テスト登録開始--------`);
 
   const testData = {
-    last_name: "test貝原",
+    last_name: "test貝原STG",
     first_name: "龍樹",
     last_name_kana: "テスト",
     first_name_kana: "リュウジュ",
@@ -28,32 +28,38 @@ const { chromium } = require("playwright");
     birth_month: "10",
     birth_day: "29",
     portable_tel: "09012345678",
-    zip: "1460092",
-    prefecture: "1",
+    zip: "1000000",
+    prefecture: "48",
     city: "テスト市",
     address: "テスト町",
     building: "テストビル",
     portable_tel: "09012345678",
     portable_email: "kaihara.ryuju.mz@mynavi.jp",
     portable_email_re: "kaihara.ryuju.mz@mynavi.jp",
-    educations_school_category_id: "5",
-    educations_school: "テスト大学",
-    educations_course: "テスト学部",
+    educations_school_category_id: "6",
+    educations_school: "テスト大学7",
+    educations_course: "テスト学部7",
     educations_entrance_date_y: "2020",
     educations_entrance_date_m: "4",
-    sport_name: "テスト競技",
-    score: "テスト成績\r\nテスト成績2",
+    sport_name: "テスト競技2",
+    score:
+      "テスト成績\nテスト成績2\ntesttesttesttesttesttesttesttesttest\n\ntest",
 
     hope_place: "1",
-    hope_place_memo: "テスト希望場所\r\nテスト希望場所",
-    other: "テストその他\r\nテストその他",
-    qualification: "テスト資格\r\nテスト資格",
-    hobby: "テスト趣味\r\nテスト趣味",
-    skill: "テスト特技\r\nテスト特技",
+    hope_place_memo:
+      "テスト希望場所\nテスト希望場所\ntesttesttesttesttesttesttesttesttest\n\ntest",
+    other: "テストその他\nテストその他",
+    qualification:
+      "テスト資格s\nテスト資格\ntesttesttesttesttesttesttesttesttest\n\ntest",
+    hobby:
+      "テスト趣味\nテスト趣味\ntesttesttesttesttesttesttesttesttest\n\ntest",
+    skill:
+      "テスト特技\nテスト特技\ntesttesttesttesttesttesttesttesttest\n\ntest",
   };
 
-  // await page.goto("https://stg-athlete-career.mynavi.jp/register/");
-  await page.goto("http://localhost:3000/register/");
+  // await page.goto("https://athlete-career.mynavi.jp/register/");
+  await page.goto("https://stg-athlete-career.mynavi.jp/register/");
+  // await page.goto("http://localhost:3000/register/");
 
   await page.fill('input[name="last_name"]', testData.last_name);
   await page.fill('input[name="first_name"]', testData.first_name);
@@ -133,9 +139,9 @@ const { chromium } = require("playwright");
     });
   });
 
-  // await page.click("#js-btn-confirm");
+  await page.click("#js-btn-confirm");
 
-  // await page.click("#js-btn-confirm");
+  await page.click("#js-btn-confirm");
 
   console.log(`--------テスト登録終了--------`);
 })();
